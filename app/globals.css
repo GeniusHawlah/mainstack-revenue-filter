@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+ 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+   
+  }
+}
+
+body {
+  /* color :#1E1E1E; */
+  /* background: red */
+}
+
+.gen-padding {
+  @apply px-[18px] md:px-[30px] lg:px-[80px] xl:px-[100px] 
+}
+
+
+
