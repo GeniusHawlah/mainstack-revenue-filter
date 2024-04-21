@@ -1,17 +1,22 @@
+// const flowbite = require("flowbite-react/tailwind");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
   content: [
+    // flowbite.content(),
+    "./node_modules/flowbite-react/lib/**/*.js",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
+      fontFamily: {
+        degular: "var(--font-degular)",
+      },
+
       colors: {
         "pry-color": "#131316",
         "sec-color": "#56616B",
-
       },
 
       screens: {
@@ -32,6 +37,6 @@ module.exports = {
     require("tailwind-scrollbar-hide"),
     require("tailwind-scrollbar")({ nocompatible: true }),
     require("flowbite/plugin"),
-
+    // flowbite.plugin(),
   ],
 };

@@ -19,9 +19,12 @@ body {
   /* background: red */
 }
 
-.gen-padding {
-  @apply px-[18px] md:px-[30px] lg:px-[80px] xl:px-[100px] 
+
+
+
+
+iconify-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
 }
-
-
-

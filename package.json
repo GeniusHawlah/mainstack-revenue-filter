@@ -19,7 +19,7 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "@iconify-icon/react": "^2.0.1",
+    "@iconify-icon/react": "^2.1.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
