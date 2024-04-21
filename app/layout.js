@@ -1,4 +1,4 @@
-import { Inter, Degular } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import localFont from "next/font/local";
@@ -24,9 +24,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${degular.variable} font-degular  text-base font-normal bg-white  px-4 `}
       >
-        {/* <TransparentOverlay /> */}
+        <TransparentOverlay />
         <Navbar />
-        <SideButtons/>
+        <SideButtons />
         <>{children}</>
       </body>
     </html>

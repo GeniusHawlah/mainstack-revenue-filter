@@ -10,7 +10,7 @@ function SideButtons() {
         {/* //>Link */}
         <div className="flex gap-2">
           <Tooltip
-            className="whitespace-nowrap ml-3"
+            className="whitespace-nowrap ml-2"
             content="Link in Bio"
             placement="right"
           >
@@ -23,7 +23,7 @@ function SideButtons() {
         {/* //>Store */}
         <div className="flex gap-2">
           <Tooltip
-            className="whitespace-nowrap ml-3"
+            className="whitespace-nowrap ml-2"
             content="Store"
             placement="right"
           >
@@ -35,7 +35,7 @@ function SideButtons() {
         {/* //>Media Kitting */}
         <div className="flex gap-2">
           <Tooltip
-            className="whitespace-nowrap ml-3"
+            className="whitespace-nowrap ml-2"
             content="Media Kitting"
             placement="right"
           >
@@ -51,7 +51,7 @@ function SideButtons() {
         {/* //>Invoicing */}
         <div className="flex gap-2">
           <Tooltip
-            className="whitespace-nowrap ml-3"
+            className="whitespace-nowrap ml-2"
             content="Invoicing"
             placement="right"
           >

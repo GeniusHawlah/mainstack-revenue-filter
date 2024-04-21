@@ -1,59 +1,7 @@
-// "use client"
-
-export default function Home() {
+export default function Revenue() {
   return (
     <main className="pl-28  ">
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-   
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
-      Home <br />
+      Home Page
     </main>
   );
 }

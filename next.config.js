@@ -1,8 +1,37 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ["picsum.photos"],
+  async redirects() {
+    return [
+      // Basic redirect
+      {
+        source: "/",
+        destination: "/revenue",
+        permanent: true,
       },
-}
 
-module.exports = nextConfig
+      {
+        source: "/analytics",
+        destination: "/revenue",
+        permanent: true,
+      },
+
+      {
+        source: "/crm",
+        destination: "/revenue",
+        permanent: true,
+      },
+
+      {
+        source: "/apps",
+        destination: "/revenue",
+        permanent: true,
+      },
+    ];
+  },
+
+  images: {
+    domains: ["picsum.photos"],
+  },
+};
+
+module.exports = nextConfig;
