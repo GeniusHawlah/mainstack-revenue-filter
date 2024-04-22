@@ -1,5 +1,5 @@
 export async function GET() {
-  const res = await fetch("https://fe-task-api.mainstack.io/wallet", {
+  const res = await fetch(`${process.env.BASE_URL}wallet`, {
     next: { revalidate: 10000 },
   });
   if (!res.ok) {

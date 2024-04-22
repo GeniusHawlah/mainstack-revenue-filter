@@ -1,11 +1,9 @@
 import React from "react";
 import InfoIcon from "./InfoIcon";
+import { fetchWallet } from "@/utils";
 
 async function OtherWalletInfo() {
-  const res = await fetch("https://fe-task-api.mainstack.io/wallet", {
-    next: { revalidate: 10000 },
-  });
-  const wallet = await res.json();
+const wallet = await fetchWallet()
   return (
     <div>
       {/* //> */}

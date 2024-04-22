@@ -24,4 +24,39 @@ export function formatDate(dateString) {
     }
   
     return `${month} ${day}${daySuffix}, ${year}`;
+}
+  
+export async function fetchWallet(){
+  const res = await fetch(`${process.env.BASE_URL}wallet`, {
+    next: { revalidate: 10000 },
+  });
+  const wallet = await res.json();
+  return wallet
+}
+
+export async function fetchTransactions(){
+  const res = await fetch(`${process.env.BASE_URL}transactions`, {
+    next: { revalidate: 10000 },
+  });
+  const transactions = await res.json();
+  return transactions
+}
+
+export async function fetchUser(){
+  const res = await fetch(`${process.env.BASE_URL}user`, {
+    next: { revalidate: 10000 },
+  });
+  const user = await res.json();
+  return user
+}
+
+export async function fetchTransactionsClientSide() {
+  try {
+    const res = await fetch(`/revenue/transactions-endpoint`);
+    const transactions = await res.json()
+    // console.log(transactions);
+  return transactions
+  } catch (error) {
+    console.log(error);
   }
+}

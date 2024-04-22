@@ -1,8 +1,9 @@
 // "use client"
 
-import LineChart from "../components/LineChart";
+import LineChart from "./LineChart";
 import AvailableBalance from "./AvailableBalance";
 import OtherWalletInfo from "./OtherWalletInfo";
+import TransactionList from "./TransactionList";
 
 export default async function Revenue() {
 
@@ -22,6 +23,10 @@ export default async function Revenue() {
         <OtherWalletInfo/>
         </div>
       </div>
+
+      <div className="mt-20">
+        <TransactionList/>
+     </div>
     </main>
   );
 }
