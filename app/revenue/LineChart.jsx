@@ -3,16 +3,23 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import { fetchTransactionsClientSide, formatDate } from "@/utils";
+import ChartSkeleton from "./ChartSkeleton";
 
 Chart.register(...registerables);
 
 const LineChart = () => {
   const [allTransactions, setAllTransactions] = useState([]);
-
+  const [pending, setPending] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchTransactionsClientSide();
-      setAllTransactions(data.transactions);
+      try {
+        setPending(true);
+        const data = await fetchTransactionsClientSide();
+        setAllTransactions(data.transactions);
+        setPending(false);
+      } catch (error) {
+        setPending(false);
+      }
     };
     fetchData();
   }, []);
@@ -80,7 +87,17 @@ const LineChart = () => {
     },
   };
 
-  return <Line data={data} options={options} className="!w-full !h-full" />;
+  if (!pending && allTransactions.length > 0) {
+    return <Line data={data} options={options} className="!w-full !h-full" />;
+  }
+
+  if (pending && allTransactions.length === 0) {
+    return <ChartSkeleton />;
+  }
+
+  // if (allTransactions.length === 0) {
+  //   return
+  //  }
 };
 
 export default LineChart;

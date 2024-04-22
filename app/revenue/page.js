@@ -16,6 +16,7 @@ export default async function Revenue() {
             <AvailableBalance />
             <button className="px-7 py-[14px]  bg-pry-color text-white divide-red-300 hover:bg-opacity-80 rounded-full text-base font-semibold">Withdraw</button>
           </div>
+          
           <LineChart />
         </div>
 
