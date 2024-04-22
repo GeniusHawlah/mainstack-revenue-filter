@@ -15,9 +15,9 @@ function Navbar() {
   const [selectedNavItem, setSelectedNavItem] = useState("/revenue");
 
   return (
-    <nav className="bg-white w-full top-0 sticky pt-4 mb-5 ">
-      <div className="relative">
-        <div className="  w-full flex justify-between items-center lg:gap-x-5 gap-x-2 px-2 lg:px-6  shadow py-[0.875rem] rounded-full  bg-white">
+    <nav className="bg-white min-w-full top-0 sticky pt-4 mb-5 ">
+      <div className="relative min-w-fit">
+        <div className="  w- flex justify-between items-center lg:gap-x-5 gap-x-2 px-2 lg:px-6  shadow py-[0.875rem] rounded-full  bg-white min-w-max">
           <Image
             onClick={() => {
               router.push("/");
