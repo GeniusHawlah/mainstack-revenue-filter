@@ -9,9 +9,24 @@ const inter = Inter({ subsets: ["latin"] });
 
 // FOR LOCAL FONTS. AND DON'T FORGET TO SET IN TAILWIND CONFIG
 const degular = localFont({
-  src: "../public/fonts/DegularDemo-Light.otf",
-  variable: "--font-degular",
+  src: [
+    {
+      path: "../public/fonts/DegularDemo-Light.otf",
+      weight: "400",
+      style: "normal",
+      variable: "--font-degular_bold",
+    },
+
+    {
+      path: "../public/fonts/DegularDemo-Bold.otf",
+      weight: "900",
+      style: "normal",
+      variable: "--font-degular_bold",
+    },
+  ],
 });
+
+
 
 export const metadata = {
   title: "Revenue Filter",
