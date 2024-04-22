@@ -8,7 +8,7 @@ async function AvailableBalance() {
     <p className="font-medium text-sm text-sec-color">
       Available Balance
     </p>
-    <p className="mt-2 font-bold text-4xl text-pry-color">
+    <p className="mt-2 font-bold text-lg md:text-2xl lg:text-4xl text-pry-color">
       USD {wallet.balance}
     </p>
   </div>

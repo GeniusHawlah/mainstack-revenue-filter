@@ -11,7 +11,7 @@ async function TransactionList() {
       <Suspense fallback={<ListSkeleton />}>
         <TransactionHeader />
 
-        <div className="mt-8  ">
+        <div className="mt-8  gap-x-8">
           {transactions.map((transaction) => (
             <div
               key={transaction.id}

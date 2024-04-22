@@ -48,8 +48,8 @@ const LineChart = () => {
   };
 
   const options = {
-    responsive: true,
-    maintainAspectRatio: false,
+    // responsive: true,
+    // maintainAspectRatio: false,
     // aspectRatio: 1,
     scales: {
       x: {
@@ -74,7 +74,7 @@ const LineChart = () => {
         },
       },
       y: {
-        // display: false,
+        display: false,
         grid: {
           display: false,
         },
@@ -88,7 +88,7 @@ const LineChart = () => {
   };
 
   if (!pending && allTransactions.length > 0) {
-    return <Line data={data} options={options} className="!w-full !h-full" />;
+    return <Line data={data} options={options} className="!w-full " />;
   }
 
   if (pending && allTransactions.length === 0) {

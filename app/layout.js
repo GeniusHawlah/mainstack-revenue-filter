@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={``}>
       <body
-        className={`${degular.variable} font-degular  text-base font-normal bg-white  px-4 `}
+        className={`${degular.variable} font-degular  text-base font-normal bg-white px-2 md:px-4 `}
       >
         <TransparentOverlay />
         <Navbar />

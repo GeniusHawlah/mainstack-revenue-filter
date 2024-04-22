@@ -6,7 +6,7 @@ import React from "react";
 function SideButtons() {
   return (
     <aside className="h-[90vh] flex fixed   w-fit items-center justify-center">
-      <div className="rounded-full bg-white p-2 shadow">
+      <div className="rounded-full bg-white md:p-2 shadow">
         {/* //>Link */}
         <div className="flex gap-2">
           <Tooltip
