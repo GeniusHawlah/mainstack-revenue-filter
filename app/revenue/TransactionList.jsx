@@ -1,26 +1,57 @@
-import React, { Suspense } from "react";
-import TransactionHeader from "./TransactionHeader";
-import { fetchTransactions, formatDateLongYear } from "@/utils";
-import ListSkeleton from "./ListSkeleton";
-import { Icon } from "@iconify-icon/react";
+"use client";
 
-async function TransactionList() {
-  const transactions = await fetchTransactions();
+import React, { useEffect, useState } from "react";
+import TransactionHeader from "./TransactionHeader";
+import { v4 as uuidv4 } from 'uuid';
+import {
+  fetchTransactionsClientSide,
+  filterTransactions,
+  formatDateLongYear,
+} from "@/utils";
+import ListSkeleton from "../components/ListSkeleton";
+import { Icon } from "@iconify-icon/react";
+import { generalStore } from "../(store)/zustand/generalStore";
+
+function TransactionList() {
+  const [pending, setPending] = useState(false);
+  const {
+    allTransactions,
+    setAllTransactions,
+    duplicateTransactions,
+    setDuplicateTransactions,
+  } = generalStore();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setPending(true);
+        const data = await fetchTransactionsClientSide();
+        setAllTransactions(data.transactions);
+        setDuplicateTransactions(data.transactions);
+        setPending(false);
+      } catch (error) {
+        setPending(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // if (!pending && duplicateTransactions.length > 0) {
   return (
     <div>
-      <Suspense fallback={<ListSkeleton />}>
-        <TransactionHeader />
+      <TransactionHeader />
 
+      {!pending && duplicateTransactions.length > 0 && (
         <div className="mt-8  gap-x-8">
-          {transactions.map((transaction) => (
+          {duplicateTransactions.map((transaction) => (
             <div
-              key={transaction.id}
+              key={uuidv4()}
               className="mb-6 flex items-center justify-between"
             >
               <div className="flex items-center">
                 {/* //> The circle */}
                 <div
-                  className={`rounded-full flex justify-center items-center w-12 h-12 mr-4 ${
+                  className={`rounded-full flex justify-center items-center w-12 h-12 min:w-12 min:h-12 mr-4 ${
                     transaction.type === "deposit"
                       ? "bg-[#E3FCF2] text-green-600"
                       : "bg-[#F9E3E0] text-red-600"
@@ -37,7 +68,12 @@ async function TransactionList() {
 
                 {/* //> Name and status */}
                 <div>
-                  <p className="text-base font-medium">
+                  <p
+                    // onClick={() => {
+                  
+                    // }}
+                    className="text-base font-medium"
+                  >
                     {transaction.type === "deposit"
                       ? transaction?.metadata?.product_name ||
                         "Un-named Deposit"
@@ -77,9 +113,16 @@ async function TransactionList() {
             </div>
           ))}
         </div>
-      </Suspense>
+      )}
+
+      {pending && duplicateTransactions.length === 0 && <ListSkeleton />}
     </div>
   );
+  // }
+
+  // if (pending && duplicateTransactions.length === 0) {
+  //   return <ListSkeleton />;
+  // }
 }
 
 export default TransactionList;

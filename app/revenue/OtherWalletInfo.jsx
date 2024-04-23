@@ -40,8 +40,8 @@ const wallet = await fetchWallet()
       {/* //> */}
       <div className="mt-4 lg:mt-8">
         <div className="flex justify-between  gap-x-7 lg:gap-x-24  text-sec-color">
-          <p className="font-medium text-sm text-sec-color">Pending Revenue</p>
-          {<InfoIcon toolTipText="You pending payout." />}
+          <p className="font-medium text-sm text-sec-color">Pending Payout</p>
+          {<InfoIcon toolTipText="Your pending payout." />}
         </div>
         <p className="mt-2 font-bold text-lg lg:text-xl text-pry-color">
           USD {wallet.pending_payout}

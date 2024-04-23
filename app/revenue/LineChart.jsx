@@ -3,19 +3,23 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import { fetchTransactionsClientSide, formatDate } from "@/utils";
-import ChartSkeleton from "./ChartSkeleton";
+import ChartSkeleton from "../components/ChartSkeleton";
+import { generalStore } from "../(store)/zustand/generalStore";
 
 Chart.register(...registerables);
 
 const LineChart = () => {
-  const [allTransactions, setAllTransactions] = useState([]);
+  const {allTransactions, setAllTransactions} = generalStore()
   const [pending, setPending] = useState(false);
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setPending(true);
         const data = await fetchTransactionsClientSide();
         setAllTransactions(data.transactions);
+        setDuplicateTransactions(data.transactions);
         setPending(false);
       } catch (error) {
         setPending(false);
@@ -24,6 +28,8 @@ const LineChart = () => {
     fetchData();
   }, []);
 
+
+
   // Sample data
   const data = {
     labels: allTransactions
@@ -31,7 +37,7 @@ const LineChart = () => {
       .map((transaction) => formatDate(transaction.date)),
     datasets: [
       {
-        label: "Balance",
+        label: "Amount",
         data: allTransactions
           .slice(0, 10)
           .map((transaction) => transaction.amount),

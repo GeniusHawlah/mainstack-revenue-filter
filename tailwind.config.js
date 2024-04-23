@@ -1,9 +1,9 @@
-// const flowbite = require("flowbite-react/tailwind");
+const flowbite = require("flowbite-react/tailwind");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    // flowbite.content(),
-    "./node_modules/flowbite-react/lib/**/*.js",
+    flowbite.content(),
+    // "./node_modules/flowbite-react/lib/**/*.js",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -23,9 +23,11 @@ module.exports = {
         0: "0px",
         400: "400px",
         630: "630px",
+        640: "640px",
+
         685: "685px",
         1025: "1025px",
-       
+
         // 1025: "1025px",
       },
 
@@ -39,7 +41,7 @@ module.exports = {
   plugins: [
     require("tailwind-scrollbar-hide"),
     require("tailwind-scrollbar")({ nocompatible: true }),
-    require("flowbite/plugin"),
-    // flowbite.plugin(),
+    // require("flowbite/plugin"),
+    flowbite.plugin(),
   ],
 };

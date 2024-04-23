@@ -29,3 +29,49 @@ export const NAV_ITEMS = [
     slug: "/apps",
   },
 ];
+
+
+export const FILTER_BUTTONS = [
+  {
+    title: "Today",
+    value: "today",
+  },
+
+  {
+    title: "Last Seven Days",
+    value: "last7Days",
+  },
+
+  {
+    title: "This Month",
+    value: "thisMonth",
+  },
+
+  {
+    title: "Last Three Months",
+    value: "last3Months",
+  },
+
+  {
+    title: "This Year",
+    value: "thisYear",
+  },
+
+  {
+    title: "Last Year",
+    value: "lastYear",
+  },
+
+  {
+    title: "All Time",
+    value: "allTime",
+  },
+];
+
+export const TRANSACTION_TYPES = [
+  "Deposit", "Withdrawal", "Reversal", "Cashback", "Charges", "Referral", "Tip"
+];
+
+export const TRANSACTION_STATUS = [
+  "Failed", "Successful", "Pending"
+]

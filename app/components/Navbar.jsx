@@ -5,14 +5,35 @@ import logo from "@/public/images/logo.svg";
 import { generalStore } from "@/app/(store)/zustand/generalStore";
 import { Icon } from "@iconify-icon/react";
 import { NAV_ITEMS } from "../(store)/content/content";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import ProfileMenu from "./ProfileMenu";
+import { fetchUserClientSide } from "@/utils";
 
 function Navbar() {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const { menuIsClicked, setMenuIsClicked } = generalStore();
-
+  const { menuIsClicked, setMenuIsClicked, user, setUser } = generalStore();
   const [selectedNavItem, setSelectedNavItem] = useState("/revenue");
+
+  // searchParams.get("sc")
+  //   ? (document.body.style.cssText = "overflow: hidden;")
+  //   : (document.body.style.cssText = "overflow: scroll;");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // setPending(true);
+        const userData = await fetchUserClientSide();
+        setUser(userData.user);
+        // console.log(userData.user);
+        // setPending(false);
+      } catch (error) {
+        console.log(error);
+        // setPending(false);
+      }
+    };
+    fetchData();
+  }, []);
+  ``;
 
   return (
     <nav className="bg-white min-w-full top-0 sticky pt-4 mb-5 ">
@@ -67,7 +88,8 @@ function Navbar() {
               className="rounded-full cursor-pointer pl-[5px] pr-3 py-1 flex gap-x-2 bg-[#eff1f6] items-center"
             >
               <p className="text-center flex justify-center items-center w-6 lg:w-8 h-6 lg:h-8 text-white bg-pry-color rounded-full font-semibold text-sm">
-                OJ
+                {user?.first_name?.charAt(0).toUpperCase()}
+                {user?.last_name?.charAt(0).toUpperCase()}
               </p>
               <Icon icon="material-symbols-light:menu" className="text-2xl" />
             </div>
