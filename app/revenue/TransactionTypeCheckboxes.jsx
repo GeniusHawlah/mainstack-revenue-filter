@@ -38,7 +38,7 @@ function TransactionTypeCheckboxes() {
             checkAndUncheck(transactionType);
           }}
           key={transactionType}
-          className="cursor-pointer flex items-center select-none p-4 gap-x-3 "
+          className="cursor-pointer hover:bg-gray-100 rounded-md flex items-center select-none p-4 gap-x-3 "
         >
           {/* //>checkbox */}
           <div className=" border border-gray-400 flex justify-center items-center w-fit cursor-pointer ">

@@ -85,7 +85,7 @@ function FilterSideSlider() {
         });
         setShowFilter(false);
       }}
-      className={`bg-black bg-opacity-20 w-full h-screen fixed z-[20] right-0  duration-700 flex justify-end ${
+      className={`bg-yellow-100 bg-opacity-20 py-3 pr-3 w-full h-full fixed z-[20] right-0  duration-700 flex justify-end ${
         showFilter ? " translate-x-0 " : "translate-x-full "
       }`}
     >
@@ -93,7 +93,7 @@ function FilterSideSlider() {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className={`bg-white shadow-sm rounded p-5 w-[620px] h-full overflow-auto max-h-fit relative `}
+        className={`bg-white shadow-sm rounded-md p-5 w-[600px] h-full overflow-auto max-h-fit relative `}
       >
         {/* //> */}
         <div className="flex justify-between items-center">
