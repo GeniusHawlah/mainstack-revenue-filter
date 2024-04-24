@@ -20,5 +20,6 @@ Based on the provided Figma link, API endpoints, and my discretion:
 - For responsiveness sake, the top Nav Items are merged with the profile dropdown items on some screens.
 - Tooltips are added to the info icons in front of wallet details.
 - Hovering on the chart joints displays the data.
+- The Degular font I used is not as bold as the Figma font.
 
 [Demo app link](https://mainstack-revenue-filter.vercel.app/revenue)
