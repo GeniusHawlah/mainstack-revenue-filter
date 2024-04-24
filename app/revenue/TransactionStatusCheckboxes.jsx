@@ -5,23 +5,23 @@ import { Icon } from "@iconify-icon/react";
 import { TRANSACTION_STATUS } from "../(store)/content/content";
 import { generalStore } from "../(store)/zustand/generalStore";
 
-function TransactionStatusCheckboxes({
-  selectedTransactionStatus,
-  setSelectedTransactionStatus,
-}) {
+function TransactionStatusCheckboxes() {
+  const { selectedTransactionStatus, setSelectedTransactionStatus } =
+    generalStore();
 
   function checkAndUncheck(transactionStatus) {
-  
     if (!selectedTransactionStatus.includes(transactionStatus)) {
-      setSelectedTransactionStatus((oldIDArray) => [
-        ...oldIDArray,
+      setSelectedTransactionStatus([
+        ...selectedTransactionStatus,
         transactionStatus,
       ]);
     }
     if (selectedTransactionStatus.includes(transactionStatus)) {
-      setSelectedTransactionStatus((oldIDArray) =>
-        oldIDArray.filter((status) => transactionStatus !== status)
+      let duplicateArray = [...selectedTransactionStatus];
+      let filteredDuplicate = duplicateArray.filter(
+        (status) => transactionStatus !== status
       );
+      setSelectedTransactionStatus(filteredDuplicate);
     }
   }
 
@@ -30,7 +30,7 @@ function TransactionStatusCheckboxes({
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className="absolute z-5  rounded bg-white shadow-md w-full border p-2 h-64   text-sm flex flex-col  gap-y-2 pb-10 overflow-y-auto scrollbar-hide"
+      className="absolute z-[9]  rounded bg-white shadow-md w-full border p-2 h-52   text-sm flex flex-col  gap-y-2 pb-10 overflow-y-auto scrollbar-hide"
     >
       {TRANSACTION_STATUS.map((transactionStatus) => (
         <div

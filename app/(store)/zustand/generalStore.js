@@ -24,13 +24,18 @@ export const generalStore = create((set) => {
     },
     setFilterData: (value) => set({ filterData: value }),
 
-    todayOrTheRest: "allTime",
-    setTodayOrTheRest: (value) => set({ todayOrTheRest: value }),
-
-
+    anyDayButAllTime: "allTime",
+    setAnyDayButAllTime: (value) => set({ anyDayButAllTime: value }),
 
     filterCounter: 0,
     setFilterCounter: (value) => set({ filterCounter: value }),
+
+    selectedTransactionStatus: [],
+    setSelectedTransactionStatus: (value) =>
+      set({ selectedTransactionStatus: value }),
+
+    selectedTransactionTypes: [],
+    setSelectedTransactionTypes: (value) =>
+      set({ selectedTransactionTypes: value }),
   };
 });
-

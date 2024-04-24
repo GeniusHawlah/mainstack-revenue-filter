@@ -5,23 +5,23 @@ import { Icon } from "@iconify-icon/react";
 import { TRANSACTION_TYPES } from "../(store)/content/content";
 import { generalStore } from "../(store)/zustand/generalStore";
 
-function TransactionTypeCheckboxes({
-  selectedTransactionTypes,
-  setSelectedTransactionTypes,
-}) {
+function TransactionTypeCheckboxes() {
+  const { selectedTransactionTypes, setSelectedTransactionTypes } =
+    generalStore();
 
   function checkAndUncheck(transactionType) {
-   
     if (!selectedTransactionTypes.includes(transactionType)) {
-      setSelectedTransactionTypes((oldIDArray) => [
-        ...oldIDArray,
+      setSelectedTransactionTypes([
+        ...selectedTransactionTypes,
         transactionType,
       ]);
     }
     if (selectedTransactionTypes.includes(transactionType)) {
-      setSelectedTransactionTypes((oldIDArray) =>
-        oldIDArray.filter((type) => transactionType !== type)
+      let duplicateArray = [...selectedTransactionTypes];
+      let filteredDuplicate = duplicateArray.filter(
+        (type) => transactionType !== type
       );
+      setSelectedTransactionTypes(filteredDuplicate);
     }
   }
 

@@ -11,6 +11,7 @@ import {
 import ListSkeleton from "../components/ListSkeleton";
 import { Icon } from "@iconify-icon/react";
 import { generalStore } from "../(store)/zustand/generalStore";
+import NoResult from "../components/NoResult";
 
 function TransactionList() {
   const [pending, setPending] = useState(false);
@@ -118,6 +119,8 @@ function TransactionList() {
       )}
 
       {pending && duplicateTransactions.length === 0 && <ListSkeleton />}
+
+      {!pending && duplicateTransactions.length === 0 && <NoResult/>}
     </div>
   );
   // }

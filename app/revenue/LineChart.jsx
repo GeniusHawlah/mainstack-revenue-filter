@@ -9,7 +9,7 @@ import { generalStore } from "../(store)/zustand/generalStore";
 Chart.register(...registerables);
 
 const LineChart = () => {
-  const {allTransactions, setAllTransactions} = generalStore()
+  const {allTransactions, setAllTransactions, setDuplicateTransactions, duplicateTransactions} = generalStore()
   const [pending, setPending] = useState(false);
 
 
@@ -30,17 +30,34 @@ const LineChart = () => {
 
 
 
-  // Sample data
   const data = {
-    labels: allTransactions
+    labels:  duplicateTransactions
       .slice(0, 10)
       .map((transaction) => formatDate(transaction.date)),
     datasets: [
       {
         label: "Amount",
-        data: allTransactions
+        data:  duplicateTransactions
           .slice(0, 10)
-          .map((transaction) => transaction.amount),
+          .map((transaction) => transaction.amount)  ,
+        // fill: false,
+        borderColor: "rgb(249, 137, 137)",
+        tension: 1,
+
+        borderWidth: 1,
+        pointRadius: 0.7,
+        pointHoverRadius: 5,
+        borderJoinStyle: "round",
+      },
+    ],
+  };
+
+   const emptyData = {
+    labels:  ["Date", "Date","Date","Date","Date","Date","Date","Date","Date","Date"],
+    datasets: [
+      {
+        label: "Amount",
+        data:   [1, 1,1,1,1,1,1,1,1,1]  ,
         // fill: false,
         borderColor: "rgb(249, 137, 137)",
         tension: 1,
@@ -59,8 +76,8 @@ const LineChart = () => {
     // aspectRatio: 1,
     scales: {
       x: {
-        labels: [
-          allTransactions
+        labels:  [
+          duplicateTransactions
             .slice(0, 10)
             .map((transaction) => formatDate(transaction.date))[0],
           "",
@@ -68,12 +85,15 @@ const LineChart = () => {
           "",
           "",
           "",
-          allTransactions
+          "",
+          "",
+          "",
+          duplicateTransactions
             .slice(0, 10)
             .map((transaction) => formatDate(transaction.date))[
-            allTransactions.slice(0, 10).length - 1
+              duplicateTransactions.slice(0, 10).length - 1
           ],
-        ], // Showing the first and last labels only
+        ] , // Showing the first and last labels only
 
         grid: {
           display: false,
@@ -93,17 +113,54 @@ const LineChart = () => {
     },
   };
 
-  if (!pending && allTransactions.length > 0) {
+    const emptyOptions = {
+    // responsive: true,
+    // maintainAspectRatio: false,
+    // aspectRatio: 1,
+    scales: {
+      x: {
+        labels:  [
+         "Date",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Date",
+        ] , // Showing the first and last labels only
+
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        display: false,
+        grid: {
+          display: false,
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+
+  if (!pending && duplicateTransactions.length > 0) {
     return <Line data={data} options={options} className="!w-full " />;
   }
 
-  if (pending && allTransactions.length === 0) {
+  if (pending && duplicateTransactions.length === 0) {
     return <ChartSkeleton />;
   }
 
-  // if (allTransactions.length === 0) {
-  //   return
-  //  }
+  if (!pending && duplicateTransactions.length === 0) {
+    return <Line data={emptyData} options={emptyOptions} className="!w-full " />
+   }
 };
 
 export default LineChart;

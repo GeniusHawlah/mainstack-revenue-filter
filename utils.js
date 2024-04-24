@@ -170,7 +170,8 @@ export function filterTransactions({
         .slice(0, 10);
       break;
     case "allTime":
-      startDate = endDate = "";
+      startDate = startDate;
+      endDate = endDate;
       break;
     default:
       break;
@@ -324,5 +325,3 @@ export function formatArray(array) {
 
   return formatted_string;
 }
-
-

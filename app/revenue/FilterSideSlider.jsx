@@ -10,7 +10,6 @@ import {
   dateToDisplay,
   filterTransactions,
   formatArray,
-  formatDateLongYear,
   updateParam,
 } from "@/utils";
 import { Datepicker } from "flowbite-react";
@@ -23,11 +22,6 @@ function FilterSideSlider() {
   const searchParams = useSearchParams();
   const [showTransactionTypes, setShowTransactionTypes] = useState(false);
   const [showTransactionStatus, setShowTransactionStatus] = useState(false);
-  const [selectedTransactionTypes, setSelectedTransactionTypes] = useState([]);
-
-  const [selectedTransactionStatus, setSelectedTransactionStatus] = useState(
-    []
-  );
 
   const {
     setShowFilter,
@@ -37,7 +31,11 @@ function FilterSideSlider() {
     filterData,
     setFilterData,
     setFilterCounter,
-    filterCounter,
+    selectedTransactionStatus,
+    selectedTransactionTypes,
+    setSelectedTransactionStatus,
+    setSelectedTransactionTypes,
+    setAnyDayButAllTime,
   } = generalStore();
 
   useEffect(() => {
@@ -127,7 +125,6 @@ function FilterSideSlider() {
           <div>
             <p className="text-base font-semibold text-pry-color">Date Range</p>
             <div className="mt-3 640:flex w-full gap-x-[6px] items-center">
-              {/* <Flowbite theme={{ theme: customTheme }}> */}{" "}
               <Datepicker
                 disabled={filterData.specificRange !== "allTime"}
                 showClearButton={false}
@@ -146,7 +143,6 @@ function FilterSideSlider() {
                 }}
                 className="640:w-1/2 border-0"
               />
-              {/* </Flowbite> */}
               <Datepicker
                 disabled={filterData.specificRange !== "allTime"}
                 showClearButton={false}
@@ -189,12 +185,7 @@ function FilterSideSlider() {
                 <Icon icon="mingcute:down-line" className="text-base" />
               </button>
 
-              {showTransactionTypes && (
-                <TransactionTypeCheckboxes
-                  selectedTransactionTypes={selectedTransactionTypes}
-                  setSelectedTransactionTypes={setSelectedTransactionTypes}
-                />
-              )}
+              {showTransactionTypes && <TransactionTypeCheckboxes />}
             </div>
           </div>
 
@@ -221,12 +212,7 @@ function FilterSideSlider() {
                 <Icon icon="mingcute:down-line" className="text-base" />
               </button>
 
-              {showTransactionStatus && (
-                <TransactionStatusCheckboxes
-                  selectedTransactionStatus={selectedTransactionStatus}
-                  setSelectedTransactionStatus={setSelectedTransactionStatus}
-                />
-              )}
+              {showTransactionStatus && <TransactionStatusCheckboxes />}
             </div>
           </div>
 
@@ -247,13 +233,21 @@ function FilterSideSlider() {
                 setDuplicateTransactions(
                   filterTransactions({
                     transactionList: allTransactions,
-                    type: "",
-                    status: "",
+                    type: [],
+                    status: [],
                     startDate: "",
                     endDate: "",
                     specificRange: "allTime",
                   })
                 );
+                setSelectedTransactionTypes([]);
+                setSelectedTransactionStatus([]);
+                setFilterData({
+                  startDate: "",
+                  endDate: "",
+                  specificRange: "allTime",
+                });
+                setAnyDayButAllTime("allTime");
                 setShowFilter(false);
               }}
             >

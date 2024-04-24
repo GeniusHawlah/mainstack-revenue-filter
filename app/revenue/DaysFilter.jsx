@@ -8,8 +8,8 @@ function DaysFilter() {
   const {
     filterData,
     setFilterData,
-    todayOrTheRest,
-    setTodayOrTheRest,
+    anyDayButAllTime,
+    setAnyDayButAllTime,
     filterList,
   } = generalStore();
   return (
@@ -19,23 +19,21 @@ function DaysFilter() {
           <div key={button.value} className="  relative ">
             <button
               onClick={() => {
-               
-                setTodayOrTheRest(button.value);
-                if (button.value === todayOrTheRest) {
+                setAnyDayButAllTime(button.value);
+                if (button.value === anyDayButAllTime) {
                   //Unselecting
                   setFilterData({ ...filterData, specificRange: "allTime" });
-                  setTodayOrTheRest("allTime");
+                  setAnyDayButAllTime("allTime");
                 } else {
                   // Selecting
                   setFilterData({
                     ...filterData,
                     specificRange: button.value,
                   });
-                 
                 }
               }}
               className={`px-[18px] py-[10px] cursor-pointer select-none whitespace-nowrap   border   text-sm font-semibold rounded-full  ${
-                button.value === todayOrTheRest
+                button.value === anyDayButAllTime
                   ? "bg-pry-color text-white"
                   : "hover:bg-gray-50 bg-white"
               }`}
