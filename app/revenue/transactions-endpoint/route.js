@@ -8,7 +8,6 @@ export async function GET() {
 
   const data = await res.json();
   const transactions = data.sort((a, b) => new Date(a.date) - new Date(b.date))
-  // console.log(transactions); 
 
   return Response.json({ transactions });
 }

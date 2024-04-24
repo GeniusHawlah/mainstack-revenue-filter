@@ -5,35 +5,28 @@ import logo from "@/public/images/logo.svg";
 import { generalStore } from "@/app/(store)/zustand/generalStore";
 import { Icon } from "@iconify-icon/react";
 import { NAV_ITEMS } from "../(store)/content/content";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import ProfileMenu from "./ProfileMenu";
 import { fetchUserClientSide } from "@/utils";
 
 function Navbar() {
-  const searchParams = useSearchParams();
   const router = useRouter();
   const { menuIsClicked, setMenuIsClicked, user, setUser } = generalStore();
   const [selectedNavItem, setSelectedNavItem] = useState("/revenue");
 
-  // searchParams.get("sc")
-  //   ? (document.body.style.cssText = "overflow: hidden;")
-  //   : (document.body.style.cssText = "overflow: scroll;");
+   
   useEffect(() => {
+   
     const fetchData = async () => {
       try {
-        // setPending(true);
         const userData = await fetchUserClientSide();
         setUser(userData.user);
-        // console.log(userData.user);
-        // setPending(false);
       } catch (error) {
         console.log(error);
-        // setPending(false);
       }
     };
     fetchData();
   }, []);
-  ``;
 
   return (
     <nav className="bg-white min-w-full top-0 sticky pt-4 mb-5 ">

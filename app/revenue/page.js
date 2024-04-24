@@ -6,7 +6,6 @@ import OtherWalletInfo from "./OtherWalletInfo";
 import TransactionList from "./TransactionList";
 
 export default async function Revenue({ searchParams }) {
-  console.log(searchParams.sc);
   
   return (
     <div

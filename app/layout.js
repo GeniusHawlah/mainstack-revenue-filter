@@ -5,6 +5,8 @@ import localFont from "next/font/local";
 import TransparentOverlay from "./components/TransparentOverlay";
 import SideButtons from "./components/SideButtons";
 import FilterSideSlider from "./revenue/FilterSideSlider";
+import { Suspense } from "react";
+import NavbarSkeleton from "./components/NavbarSkeleton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,25 +29,25 @@ const degular = localFont({
   ],
 });
 
-
-
 export const metadata = {
   title: "Revenue Filterr",
   description: "View and filter revenue.",
 };
 
 export default function RootLayout({ children }) {
- 
   return (
     <html lang="en" className={``}>
       <body
         className={`${degular.variable}   font-degular  text-base font-normal bg-white px-2 md:px-4 min-w-fit `}
       >
         <TransparentOverlay />
-        <FilterSideSlider/>
-        <Navbar />
+        <FilterSideSlider />
+        <Suspense fallback={<NavbarSkeleton />}>
+          <Navbar />
+        </Suspense>
         <SideButtons />
-        <>{children}</> 
+
+        <>{children}</>
       </body>
     </html>
   );

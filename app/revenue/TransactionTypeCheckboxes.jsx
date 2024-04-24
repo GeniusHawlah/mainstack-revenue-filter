@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Icon } from "@iconify-icon/react";
@@ -8,8 +8,6 @@ function TransactionTypeCheckboxes({
   selectedTransactionTypes,
   setSelectedTransactionTypes,
 }) {
-
-    
   function checkAndUncheck(transactionType) {
     if (!selectedTransactionTypes.includes(transactionType)) {
       setSelectedTransactionTypes((oldIDArray) => [
@@ -40,7 +38,7 @@ function TransactionTypeCheckboxes({
           className="cursor-pointer flex items-center select-none p-4 gap-x-3 "
         >
           {/* //>checkbox */}
-          <div className="rounded-md border border-gray-400 flex justify-center items-center w-fit cursor-pointer ">
+          <div className=" border border-gray-400 flex justify-center items-center w-fit cursor-pointer ">
             <Icon
               icon="typcn:tick"
               className={` text-base ${
@@ -50,7 +48,7 @@ function TransactionTypeCheckboxes({
               }`}
             />
           </div>{" "}
-          {transactionType}
+          {transactionType.charAt(0).toUpperCase() + transactionType.slice(1)}
         </div>
       ))}
     </div>

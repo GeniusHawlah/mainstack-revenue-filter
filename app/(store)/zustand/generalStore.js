@@ -14,15 +14,18 @@ export const generalStore = create((set) => {
     duplicateTransactions: [],
     setDuplicateTransactions: (value) => set({ duplicateTransactions: value }),
 
-    showFilter: true,
+    showFilter: false,
     setShowFilter: (value) => set({ showFilter: value }),
 
     filterData: {
-     
       startDate: "",
       endDate: "",
-      specificRange: "",
+      specificRange: "allTime",
     },
     setFilterData: (value) => set({ filterData: value }),
+
+
+    pastDays: "allTime",
+    setPastDays: (value) => set({ pastDays: value }),
   };
 });

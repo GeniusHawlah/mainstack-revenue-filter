@@ -69,9 +69,9 @@ export const FILTER_BUTTONS = [
 ];
 
 export const TRANSACTION_TYPES = [
-  "Deposit", "Withdrawal", "Reversal", "Cashback", "Charges", "Referral", "Tip"
+  "deposit", "withdrawal", "reversal", "cashback", "charges", "referral", "tip"
 ];
 
 export const TRANSACTION_STATUS = [
-  "Failed", "Successful", "Pending"
+  "failed", "successful", "pending"
 ]

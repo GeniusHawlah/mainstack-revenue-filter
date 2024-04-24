@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Icon } from "@iconify-icon/react";
@@ -8,7 +8,6 @@ function TransactionStatusCheckboxes({
   selectedTransactionStatus,
   setSelectedTransactionStatus,
 }) {
-
   function checkAndUncheck(transactionStatus) {
     if (!selectedTransactionStatus.includes(transactionStatus)) {
       setSelectedTransactionStatus((oldIDArray) => [
@@ -28,7 +27,7 @@ function TransactionStatusCheckboxes({
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className="absolute z-10  rounded bg-white shadow-md w-full border p-2 h-64   text-sm flex flex-col  gap-y-2 pb-10 overflow-y-auto scrollbar-hide"
+      className="absolute z-5  rounded bg-white shadow-md w-full border p-2 h-64   text-sm flex flex-col  gap-y-2 pb-10 overflow-y-auto scrollbar-hide"
     >
       {TRANSACTION_STATUS.map((transactionStatus) => (
         <div
@@ -49,7 +48,7 @@ function TransactionStatusCheckboxes({
               }`}
             />
           </div>{" "}
-          {transactionStatus}
+          {transactionStatus.charAt(0).toUpperCase() + transactionStatus.slice(1)}
         </div>
       ))}
     </div>

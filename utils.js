@@ -133,7 +133,7 @@ export function filterTransactions({
     case "today":
       startDate = endDate = today.toISOString().slice(0, 10);
       break;
-    case "last7days":
+    case "last7Days":
       startDate = new Date(
         today.getFullYear(),
         today.getMonth(),
@@ -170,7 +170,7 @@ export function filterTransactions({
         .slice(0, 10);
       break;
     case "allTime":
-      startDate = endDate = null;
+      startDate = endDate = "";
       break;
     default:
       break;
@@ -210,4 +210,119 @@ export function updateParam({ key, value, router, pathName, searchParams }) {
   router.push(`${pathName}${query}`);
 }
 
+export const customTheme = {
+ 
+  root: {
+    base: "relative",
+  },
+  popup: {
+    root: {
+      base: "absolute top-10 z-50 block pt-2 ",
+      inline: "relative top-0 z-auto",
+      inner: "inline-block rounded-lg bg-white p-4 shadow-lg dark:bg-gray-700",
+    },
+    header: {
+      base: "",
+      title:
+        "px-2 py-3 text-center font-semibold text-gray-900 dark:text-white",
+      selectors: {
+        base: "mb-2 flex justify-between",
+        button: {
+          base: "rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600",
+          prev: "",
+          next: "",
+          view: "",
+        },
+      },
+    },
+    view: {
+      base: "p-1",
+    },
+    footer: {
+      base: "mt-2 flex space-x-2",
+      button: {
+        base: "w-full rounded-lg px-5 py-2 text-center text-sm font-medium focus:ring-4 focus:ring-pry-color",
+        today:
+          "bg-pry-color text-white hover:bg-cyan-800 dark:bg-cyan-600 dark:hover:bg-pry-color",
+        clear:
+          "border border-gray-300 bg-white text-gray-900 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600",
+      },
+    },
+  },
+  views: {
+    days: {
+      header: {
+        base: "mb-1 grid grid-cols-7",
+        title:
+          "h-6 text-center text-sm font-medium leading-6 text-gray-500 dark:text-gray-400",
+      },
+      items: {
+        base: "grid w-64 grid-cols-7",
+        item: {
+          base: "block flex-1 cursor-pointer rounded-full border-0 text-center text-sm font-semibold leading-9 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600 ",
+          selected: "bg-pry-color text-white hover:bg-cyan-600",
+          disabled: "text-gray-500",
+        },
+      },
+    },
+    months: {
+      items: {
+        base: "grid w-64 grid-cols-4",
+        item: {
+          base: "block flex-1 cursor-pointer rounded-lg border-0 text-center text-sm font-semibold leading-9 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600",
+          selected: "bg-pry-color text-white hover:bg-cyan-600",
+          disabled: "text-gray-500",
+        },
+      },
+    },
+    years: {
+      items: {
+        base: "grid w-64 grid-cols-4",
+        item: {
+          base: "block flex-1 cursor-pointer rounded-lg border-0 text-center text-sm font-semibold leading-9 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600",
+          selected: "bg-pry-color text-white hover:bg-cyan-600",
+          disabled: "text-gray-500",
+        },
+      },
+    },
+    decades: {
+      items: {
+        base: "grid w-64 grid-cols-4",
+        item: {
+          base: "block flex-1 cursor-pointer rounded-lg border-0 text-center text-sm font-semibold leading-9  text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600",
+          selected: "bg-pry-color text-white hover:bg-cyan-600",
+          disabled: "text-gray-500",
+        },
+      },
+    },
+  },
+};
 
+export function dateToDisplay(dateString) {
+  const date = new Date(dateString);
+
+  // Get the day, month, and year
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+
+  const formattedDate = `${day} ${month} ${year}`;
+
+  return formattedDate;
+}
+
+
+export function formatArray(array) {
+  // Function to capitalize the first letter of a string
+  function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  // Capitalize the first letter of each element
+  let capitalized_array = array.map(capitalizeFirstLetter);
+
+  // Joining the elements with commas and spaces
+  let formatted_string = capitalized_array.join(", ");
+
+  return formatted_string;
+}

@@ -1,11 +1,18 @@
 "use client";
 
 import { Icon } from "@iconify-icon/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { generalStore } from "../(store)/zustand/generalStore";
 import DaysFilter from "./DaysFilter";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { filterTransactions, updateParam } from "@/utils";
+import {
+  customTheme,
+  dateToDisplay,
+  filterTransactions,
+  formatArray,
+  formatDateLongYear,
+  updateParam,
+} from "@/utils";
 import { Datepicker } from "flowbite-react";
 import TransactionTypeCheckboxes from "./TransactionTypeCheckboxes";
 import TransactionStatusCheckboxes from "./TransactionStatusCheckboxes";
@@ -40,9 +47,27 @@ function FilterSideSlider() {
     });
   }
 
+  useEffect(() => {
+    function handleScroll() {
+      const sc = new URLSearchParams(window.location.search).get("sc");
+      if (sc) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'visible';
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div
       onClick={() => {
+        document.body.style.overflow = 'visible';
         updateParam({
           key: "",
           value: "",
@@ -60,7 +85,7 @@ function FilterSideSlider() {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className={`bg-white shadow-sm rounded p-5 w-[620px] h-full `}
+        className={`bg-white shadow-sm rounded p-5 w-[620px] h-full overflow-auto max-h-fit relative `}
       >
         {/* //> */}
         <div className="flex justify-between items-center">
@@ -72,6 +97,7 @@ function FilterSideSlider() {
             icon="carbon:close"
             className="text-2xl cursor-pointer"
             onClick={() => {
+              document.body.style.overflow = 'visible';
               updateParam({
                 key: "",
                 value: "",
@@ -92,22 +118,38 @@ function FilterSideSlider() {
             <p className="text-base font-semibold text-pry-color">Date Range</p>
             <div className="mt-3 640:flex w-full gap-x-[6px] items-center">
               {/* <Flowbite theme={{ theme: customTheme }}> */}{" "}
-              <Datepicker
+              <Datepicker 
+                disabled={filterData.specificRange !== "allTime"}
+                showClearButton={false}
+                showTodayButton={false}
+                theme={customTheme}
+                placeholder="Pick a date"
+                value={
+                  filterData.startDate
+                    ? dateToDisplay(filterData.startDate)
+                    : ""
+                }
                 weekStart={1}
                 name="startDate"
                 onSelectedDateChanged={(date) => {
                   setFilterData({ ...filterData, startDate: date });
-                  console.log({ ...filterData, startDate: date });
                 }}
-                className="640:w-1/2 border-0 "
+                className="640:w-1/2 border-0"
               />
               {/* </Flowbite> */}
               <Datepicker
+                disabled={filterData.specificRange !== "allTime"}
+                showClearButton={false}
+                showTodayButton={false}
+                theme={customTheme}
+                placeholder="Pick a date"
+                value={
+                  filterData.endDate ? dateToDisplay(filterData.endDate) : ""
+                }
                 weekStart={1}
                 name="endDate"
                 onSelectedDateChanged={(date) => {
                   setFilterData({ ...filterData, endDate: date });
-                  console.log({ ...filterData, endDate: date });
                 }}
                 className="640:w-1/2 mt-3 640:mt-0"
               />
@@ -129,7 +171,11 @@ function FilterSideSlider() {
                   showTransactionTypes ? " border-pry-color bg-white" : ""
                 }`}
               >
-                <span>Select Transaction Status</span>
+                <span>
+                  {selectedTransactionTypes.length > 0
+                    ? formatArray(selectedTransactionTypes)
+                    : "Select Transaction Type"}
+                </span>
                 <Icon icon="mingcute:down-line" className="text-base" />
               </button>
 
@@ -157,7 +203,11 @@ function FilterSideSlider() {
                   showTransactionStatus ? " border-pry-color bg-white" : ""
                 }`}
               >
-                <span>Select Transaction Status</span>
+                <span>
+                  {selectedTransactionStatus.length > 0
+                    ? formatArray(selectedTransactionStatus)
+                    : "Select Transaction Status"}
+                </span>
                 <Icon icon="mingcute:down-line" className="text-base" />
               </button>
 
@@ -170,28 +220,65 @@ function FilterSideSlider() {
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={() => {
-              console.log({
-                selectedTransactionTypes,
-                selectedTransactionStatus,
-                filterData,
-              });
-              setDuplicateTransactions(
-                filterTransactions({
-                  transactionList: allTransactions,
-                  type: selectedTransactionTypes,
-                  status: selectedTransactionStatus,
-                  startDate: filterData.startDate,
-                  endDate: filterData.endDate,
-                  specificRange: filterData.specificRange,
-                })
-              );
-            }}
-          >
-            APPLY
-          </button>
+          {/* //>Buttons */}
+          <div className="bottom-0 right-0 absolute px-6 py-5 w-full flex items-center gap-x-3">
+            <button
+              className="w-1/2 text-base font-semibold duration-300 hover:bg-gray-50 py-3 rounded-full border border-gray-500 text-pry-color"
+              type="button"
+              onClick={() => {
+                document.body.style.overflow = 'visible';
+                updateParam({
+                  key: "",
+                  value: "",
+                  router,
+                  pathName,
+                  searchParams,
+                });
+                setDuplicateTransactions(
+                  filterTransactions({
+                    transactionList: allTransactions,
+                    type: "",
+                    status: "",
+                    startDate: "",
+                    endDate: "",
+                    specificRange: "allTime",
+                  })
+                );
+                setShowFilter(false);
+              }}
+            >
+              Clear
+            </button>
+
+            <button
+              className="w-1/2 py-3 text-white rounded-full bg-pry-color   text-base font-semibold duration-300 hover:bg-gray-700 "
+              type="button"
+              onClick={() => {
+                document.body.style.overflow = 'visible';
+                updateParam({
+                  key: "",
+                  value: "",
+                  router,
+                  pathName,
+                  searchParams,
+                });
+                setDuplicateTransactions(
+                  filterTransactions({
+                    transactionList: allTransactions,
+                    type: selectedTransactionTypes,
+                    status: selectedTransactionStatus,
+                    startDate: filterData.startDate,
+                    endDate: filterData.endDate,
+                    specificRange: filterData.specificRange,
+                  })
+                );
+
+                setShowFilter(false);
+              }}
+            >
+              Apply
+            </button>
+          </div>
         </form>
       </div>
     </div>

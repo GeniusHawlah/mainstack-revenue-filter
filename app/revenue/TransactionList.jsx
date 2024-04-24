@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import TransactionHeader from "./TransactionHeader";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import {
   fetchTransactionsClientSide,
   filterTransactions,
@@ -39,7 +39,9 @@ function TransactionList() {
   // if (!pending && duplicateTransactions.length > 0) {
   return (
     <div>
-      <TransactionHeader />
+      <Suspense>
+        <TransactionHeader />
+      </Suspense>
 
       {!pending && duplicateTransactions.length > 0 && (
         <div className="mt-8  gap-x-8">
@@ -70,7 +72,7 @@ function TransactionList() {
                 <div>
                   <p
                     // onClick={() => {
-                  
+
                     // }}
                     className="text-base font-medium"
                   >

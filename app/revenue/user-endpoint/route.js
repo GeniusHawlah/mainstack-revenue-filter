@@ -7,7 +7,6 @@ export async function GET() {
   }
  
   const user = await res.json();
-//  console.log(user);
 
 
   return Response.json({ user });
