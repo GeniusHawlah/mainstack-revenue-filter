@@ -36,38 +36,48 @@ function FilterSideSlider() {
     showFilter,
     filterData,
     setFilterData,
+    setFilterCounter,
+    filterCounter,
   } = generalStore();
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-
-    setFilterData({
-      ...filterData,
-      [name]: value,
-    });
-  }
 
   useEffect(() => {
     function handleScroll() {
       const sc = new URLSearchParams(window.location.search).get("sc");
       if (sc) {
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = "hidden";
       } else {
-        document.body.style.overflow = 'visible';
+        document.body.style.overflow = "visible";
       }
     }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const array = [
+      filterData?.specificRange !== "" &&
+        filterData?.specificRange !== "allTime",
+      selectedTransactionStatus.length > 0,
+      selectedTransactionTypes.length > 0,
+      filterData?.startDate !== "" &&
+        filterData?.endDate !== "" &&
+        (filterData?.specificRange === "" ||
+          filterData?.specificRange === "allTime"),
+    ];
+
+    const countTruthy = array.filter(Boolean).length;
+
+    setFilterCounter(countTruthy);
+  }, [filterData, selectedTransactionTypes, selectedTransactionStatus]);
 
   return (
     <div
       onClick={() => {
-        document.body.style.overflow = 'visible';
+        document.body.style.overflow = "visible";
         updateParam({
           key: "",
           value: "",
@@ -97,7 +107,7 @@ function FilterSideSlider() {
             icon="carbon:close"
             className="text-2xl cursor-pointer"
             onClick={() => {
-              document.body.style.overflow = 'visible';
+              document.body.style.overflow = "visible";
               updateParam({
                 key: "",
                 value: "",
@@ -118,7 +128,7 @@ function FilterSideSlider() {
             <p className="text-base font-semibold text-pry-color">Date Range</p>
             <div className="mt-3 640:flex w-full gap-x-[6px] items-center">
               {/* <Flowbite theme={{ theme: customTheme }}> */}{" "}
-              <Datepicker 
+              <Datepicker
                 disabled={filterData.specificRange !== "allTime"}
                 showClearButton={false}
                 showTodayButton={false}
@@ -226,7 +236,7 @@ function FilterSideSlider() {
               className="w-1/2 text-base font-semibold duration-300 hover:bg-gray-50 py-3 rounded-full border border-gray-500 text-pry-color"
               type="button"
               onClick={() => {
-                document.body.style.overflow = 'visible';
+                document.body.style.overflow = "visible";
                 updateParam({
                   key: "",
                   value: "",
@@ -254,7 +264,7 @@ function FilterSideSlider() {
               className="w-1/2 py-3 text-white rounded-full bg-pry-color   text-base font-semibold duration-300 hover:bg-gray-700 "
               type="button"
               onClick={() => {
-                document.body.style.overflow = 'visible';
+                document.body.style.overflow = "visible";
                 updateParam({
                   key: "",
                   value: "",

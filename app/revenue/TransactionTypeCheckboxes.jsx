@@ -3,12 +3,15 @@
 import React from "react";
 import { Icon } from "@iconify-icon/react";
 import { TRANSACTION_TYPES } from "../(store)/content/content";
+import { generalStore } from "../(store)/zustand/generalStore";
 
 function TransactionTypeCheckboxes({
   selectedTransactionTypes,
   setSelectedTransactionTypes,
 }) {
+
   function checkAndUncheck(transactionType) {
+   
     if (!selectedTransactionTypes.includes(transactionType)) {
       setSelectedTransactionTypes((oldIDArray) => [
         ...oldIDArray,

@@ -211,7 +211,6 @@ export function updateParam({ key, value, router, pathName, searchParams }) {
 }
 
 export const customTheme = {
- 
   root: {
     base: "relative",
   },
@@ -303,7 +302,7 @@ export function dateToDisplay(dateString) {
 
   // Get the day, month, and year
   const day = date.getDate();
-  const month = date.toLocaleString('default', { month: 'short' });
+  const month = date.toLocaleString("default", { month: "short" });
   const year = date.getFullYear();
 
   const formattedDate = `${day} ${month} ${year}`;
@@ -311,11 +310,10 @@ export function dateToDisplay(dateString) {
   return formattedDate;
 }
 
-
 export function formatArray(array) {
   // Function to capitalize the first letter of a string
   function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   // Capitalize the first letter of each element
@@ -326,3 +324,5 @@ export function formatArray(array) {
 
   return formatted_string;
 }
+
+

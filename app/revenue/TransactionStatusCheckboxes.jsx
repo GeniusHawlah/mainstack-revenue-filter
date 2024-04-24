@@ -3,12 +3,15 @@
 import React from "react";
 import { Icon } from "@iconify-icon/react";
 import { TRANSACTION_STATUS } from "../(store)/content/content";
+import { generalStore } from "../(store)/zustand/generalStore";
 
 function TransactionStatusCheckboxes({
   selectedTransactionStatus,
   setSelectedTransactionStatus,
 }) {
+
   function checkAndUncheck(transactionStatus) {
+  
     if (!selectedTransactionStatus.includes(transactionStatus)) {
       setSelectedTransactionStatus((oldIDArray) => [
         ...oldIDArray,
@@ -48,7 +51,8 @@ function TransactionStatusCheckboxes({
               }`}
             />
           </div>{" "}
-          {transactionStatus.charAt(0).toUpperCase() + transactionStatus.slice(1)}
+          {transactionStatus.charAt(0).toUpperCase() +
+            transactionStatus.slice(1)}
         </div>
       ))}
     </div>

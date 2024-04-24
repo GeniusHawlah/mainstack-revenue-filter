@@ -9,7 +9,7 @@ export default async function Revenue({ searchParams }) {
   
   return (
     <div
-      className={`px-[70px] lg:px-[140px] !overflow-y-hidden`}
+      className={`px-[70px] lg:px-[140px] mt-16`}
     >
       <div className="630:flex justify-between  gap-x-8 !overflow-y-hidden`">
         {/* //>Chart and balance */}

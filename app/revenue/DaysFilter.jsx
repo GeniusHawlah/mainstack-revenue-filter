@@ -5,7 +5,13 @@ import { FILTER_BUTTONS } from "../(store)/content/content";
 import { generalStore } from "../(store)/zustand/generalStore";
 
 function DaysFilter() {
-  const { filterData, setFilterData, pastDays, setPastDays} = generalStore();
+  const {
+    filterData,
+    setFilterData,
+    todayOrTheRest,
+    setTodayOrTheRest,
+    filterList,
+  } = generalStore();
   return (
     <div className="flex justify-between w-full mt-7">
       <div className="flex scroll-smooth  overflow-x-scroll justify-between items-center scrollbar-hide gap-x-2 ">
@@ -13,17 +19,23 @@ function DaysFilter() {
           <div key={button.value} className="  relative ">
             <button
               onClick={() => {
-                setPastDays(button.value);
-                button.value === pastDays
-                  ? (setFilterData({ ...filterData, specificRange: "allTime" }),
-                    setPastDays("allTime"))
-                  : setFilterData({
-                      ...filterData,
-                      specificRange: button.value,
-                    });
+               
+                setTodayOrTheRest(button.value);
+                if (button.value === todayOrTheRest) {
+                  //Unselecting
+                  setFilterData({ ...filterData, specificRange: "allTime" });
+                  setTodayOrTheRest("allTime");
+                } else {
+                  // Selecting
+                  setFilterData({
+                    ...filterData,
+                    specificRange: button.value,
+                  });
+                 
+                }
               }}
               className={`px-[18px] py-[10px] cursor-pointer select-none whitespace-nowrap   border   text-sm font-semibold rounded-full  ${
-                button.value === pastDays
+                button.value === todayOrTheRest
                   ? "bg-pry-color text-white"
                   : "hover:bg-gray-50 bg-white"
               }`}

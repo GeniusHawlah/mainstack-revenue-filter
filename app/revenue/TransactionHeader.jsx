@@ -14,7 +14,8 @@ function TransactionHeader() {
     duplicateTransactions,
     setShowFilter,
     showFilter,
-    setAllTransactions,
+    filterList,
+    setAllTransactions,filterCounter
   } = generalStore();
 
   return (
@@ -43,7 +44,13 @@ function TransactionHeader() {
           }}
           className="py-3 pl-4 lg:pl-[30px] pr-3 lg:pr-[20px] text-base font-semibold gap-x-1 bg-[#EFF1F6] duration-300 hover:bg-gray-100 flex items-center rounded-full"
         >
-          Filter <Icon icon="mingcute:down-line" className=" text-xl" />
+          Filter{" "}
+          {filterCounter > 0 && (
+            <div className="w-5 h-5 bg-pry-color text-sm flex justify-center items-center text-white rounded-full">
+              {filterCounter}
+            </div>
+          )}
+          <Icon icon="mingcute:down-line" className=" text-xl" />
         </button>
 
         <button className="whitespace-nowrap py-3 pl-4 lg:pl-[30px] pr-3 lg:pr-[20px] text-base font-semibold gap-x-1 bg-[#EFF1F6] duration-300 hover:bg-gray-100 flex items-center rounded-full">

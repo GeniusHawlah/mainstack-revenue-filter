@@ -24,8 +24,13 @@ export const generalStore = create((set) => {
     },
     setFilterData: (value) => set({ filterData: value }),
 
+    todayOrTheRest: "allTime",
+    setTodayOrTheRest: (value) => set({ todayOrTheRest: value }),
 
-    pastDays: "allTime",
-    setPastDays: (value) => set({ pastDays: value }),
+
+
+    filterCounter: 0,
+    setFilterCounter: (value) => set({ filterCounter: value }),
   };
 });
+
