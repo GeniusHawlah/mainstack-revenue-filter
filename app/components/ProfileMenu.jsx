@@ -10,10 +10,10 @@ function ProfileMenu() {
   const router = useRouter();
   const { setMenuIsClicked, selectedNavItem, setSelectedNavItem,  user } = generalStore();
   return (
-    <div className="bg-white  h-screen text-pry-color absolute right-0 w-[400px] mt-1 rounded-md shadow-md p-5 pb-20 scrollbar-hide  overflow-auto">
+    <div className="bg-white  h-[85vh] text-pry-color absolute right-0 w-[300px] 630:w-[400px] mt-1 rounded-md shadow-md p-5 pb-20 scrollbar-hide  overflow-auto">
       {/* //>User details */}
       <div className="flex gap-x-2 items-center">
-        <p className="text-center flex justify-center items-center w-6 lg:w-8 h-6 lg:h-8 text-white bg-pry-color rounded-full  font-semibold text-sm">
+        <p className="text-center flex justify-center items-center w-8 h-8 text-white bg-pry-color rounded-full  font-semibold text-sm">
           {user?.first_name?.charAt(0).toUpperCase()}
           {user?.last_name?.charAt(0).toUpperCase()}
         </p>
