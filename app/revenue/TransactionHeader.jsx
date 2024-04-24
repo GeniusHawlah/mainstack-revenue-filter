@@ -42,7 +42,7 @@ function TransactionHeader() {
             });
             setShowFilter(!showFilter);
           }}
-          className="py-3 pl-4 lg:pl-[30px] pr-3 lg:pr-[20px] text-base font-semibold gap-x-1 bg-[#EFF1F6] duration-300 hover:bg-gray-100 flex items-center rounded-full"
+          className="py-2 630:py-3 pl-3 630:pl-4 lg:pl-[30px] pr-2 630:pr-3 lg:pr-[20px] text-sm 630:text-base font-semibold gap-x-1 bg-[#EFF1F6] duration-300 hover:bg-gray-100 flex items-center rounded-full"
         >
           Filter{" "}
           {filterCounter > 0 && (
@@ -53,7 +53,7 @@ function TransactionHeader() {
           <Icon icon="mingcute:down-line" className=" text-xl" />
         </button>
 
-        <button className="whitespace-nowrap py-3 pl-4 lg:pl-[30px] pr-3 lg:pr-[20px] text-base font-semibold gap-x-1 bg-[#EFF1F6] duration-300 hover:bg-gray-100 flex items-center rounded-full">
+        <button className="whitespace-nowrap py-2 630:py-3 pl-3 630:pl-4 lg:pl-[30px] pr-2 630:pr-3 lg:pr-[20px] text-sm 630:text-base font-semibold gap-x-1 bg-[#EFF1F6] duration-300 hover:bg-gray-100 flex items-center rounded-full">
           Export List{" "}
           <Icon icon="material-symbols-light:download" className=" text-xl" />
         </button>
