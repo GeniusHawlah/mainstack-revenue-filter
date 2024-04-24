@@ -26,6 +26,24 @@ const nextConfig = {
         destination: "/revenue",
         permanent: true,
       },
+
+      {
+        source: "/settings",
+        destination: "/revenue",
+        permanent: true,
+      },
+
+      {
+        source: "/purchase-history",
+        destination: "/revenue",
+        permanent: true,
+      },
+
+      {
+        source: "/refer-and-earn",
+        destination: "/revenue",
+        permanent: true,
+      },
     ];
   },
 

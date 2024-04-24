@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       fontFamily: {
         degular: "var(--font-degular)",
+        degular_bold: "var(--font-degular_bold)",
       },
 
       colors: {

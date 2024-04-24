@@ -5,6 +5,9 @@ export const generalStore = create((set) => {
     menuIsClicked: false,
     setMenuIsClicked: (value) => set({ menuIsClicked: value }),
 
+    appsMenuIsClicked: false,
+    setAppsMenuIsClicked: (value) => set({ appsMenuIsClicked: value }),
+
     user: {},
     setUser: (value) => set({ user: value }),
 
@@ -13,6 +16,9 @@ export const generalStore = create((set) => {
 
     duplicateTransactions: [],
     setDuplicateTransactions: (value) => set({ duplicateTransactions: value }),
+
+    selectedNavItem: "/revenue",
+    setSelectedNavItem: (value) => set({ selectedNavItem: value }),
 
     showFilter: false,
     setShowFilter: (value) => set({ showFilter: value }),

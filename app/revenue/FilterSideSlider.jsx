@@ -36,6 +36,7 @@ function FilterSideSlider() {
     setSelectedTransactionStatus,
     setSelectedTransactionTypes,
     setAnyDayButAllTime,
+    filterCounter,
   } = generalStore();
 
   useEffect(() => {
@@ -219,6 +220,7 @@ function FilterSideSlider() {
           {/* //>Buttons */}
           <div className="bottom-0 right-0 absolute px-6 py-5 w-full flex items-center gap-x-3">
             <button
+             
               className="w-1/2 text-base font-semibold duration-300 hover:bg-gray-50 py-3 rounded-full border border-gray-500 text-pry-color"
               type="button"
               onClick={() => {
@@ -255,7 +257,8 @@ function FilterSideSlider() {
             </button>
 
             <button
-              className="w-1/2 py-3 text-white rounded-full bg-pry-color   text-base font-semibold duration-300 hover:bg-gray-700 "
+             disabled={filterCounter === 0}
+              className="w-1/2 py-3 text-white rounded-full bg-pry-color   text-base font-semibold duration-300 disabled:bg-gray-400 hover:bg-gray-700 "
               type="button"
               onClick={() => {
                 document.body.style.overflow = "visible";

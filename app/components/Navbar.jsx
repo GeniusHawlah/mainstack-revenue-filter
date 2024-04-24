@@ -8,15 +8,22 @@ import { NAV_ITEMS } from "../(store)/content/content";
 import { useRouter } from "next/navigation";
 import ProfileMenu from "./ProfileMenu";
 import { fetchUserClientSide } from "@/utils";
+import AppsMenu from "./AppsMenu";
 
 function Navbar() {
   const router = useRouter();
-  const { menuIsClicked, setMenuIsClicked, user, setUser } = generalStore();
-  const [selectedNavItem, setSelectedNavItem] = useState("/revenue");
+  const {
+    menuIsClicked,
+    setMenuIsClicked,
+    appsMenuIsClicked,
+    setAppsMenuIsClicked,
+    user,
+    setUser,
+    selectedNavItem,
+    setSelectedNavItem,
+  } = generalStore();
 
-   
   useEffect(() => {
-   
     const fetchData = async () => {
       try {
         const userData = await fetchUserClientSide();
@@ -29,8 +36,19 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="bg-white min-w-full top-0 sticky pt-4 mb-5 ">
-      <div className="relative min-w-fit">
+    <nav
+      onClick={() => {
+        setMenuIsClicked(false);
+        setAppsMenuIsClicked(false);
+      }}
+      className="bg-white min-w-full top-0 sticky pt-4 mb-5 "
+    >
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="relative min-w-fit"
+      >
         <div className="  w- flex justify-between items-center lg:gap-x-5 gap-x-2 px-2 lg:px-6  shadow py-[0.875rem] rounded-full  bg-white min-w-max">
           <Image
             onClick={() => {
@@ -47,17 +65,27 @@ function Navbar() {
               <li
                 onClick={() => {
                   setSelectedNavItem(navItem.slug);
+                  navItem.slug === "/apps"
+                    ? setAppsMenuIsClicked(!appsMenuIsClicked)
+                    : setAppsMenuIsClicked(false);
+
                   router.push(navItem.slug);
                 }}
                 key={navItem.title}
-                className={`px-2 lg:px-4 py-1 lg:py-2  duration-300 rounded-full cursor-pointer select-none flex items-center gap-x-1 font-normal md:font-semibold text-sec-color text-xs md:text-sm  lg:text-base ${
-                  selectedNavItem === navItem.slug
-                    ? "bg-pry-color text-white duration-300"
-                    : "bg-white text-sec-color hover:bg-gray-50"
-                }`}
+                className="relative"
               >
-                <Icon icon={navItem.icon} className="text-base md:text-xl" />
-                <span> {navItem.title}</span>
+                <div
+                  className={`px-2 lg:px-4 py-1 lg:py-2  duration-300 rounded-full cursor-pointer select-none flex items-center gap-x-1 font-normal md:font-semibold text-sec-color text-xs md:text-sm  lg:text-base ${
+                    selectedNavItem === navItem.slug
+                      ? "bg-pry-color text-white duration-300"
+                      : "bg-white text-sec-color hover:bg-gray-50"
+                  }  ${
+                    navItem.slug !== "/apps" ? "hidden 630:flex" : ""}`}
+                >
+                  <Icon icon={navItem.icon} className="text-base md:text-xl" />
+                  <div className="flex items-center gap-x-5"> {navItem.title} {appsMenuIsClicked && navItem.slug == "/apps" && <span className="whitespace-nowrap flex items-center gap-x-2">Link in Bio <Icon icon="mingcute:down-line" /></span>  }  </div>
+                </div>
+                {appsMenuIsClicked && navItem.slug == "/apps" && <AppsMenu />}
               </li>
             ))}
           </ul>

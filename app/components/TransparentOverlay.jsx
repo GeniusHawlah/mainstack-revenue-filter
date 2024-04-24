@@ -3,16 +3,23 @@ import React from "react";
 import { generalStore } from "../(store)/zustand/generalStore";
 
 function TransparentOverlay() {
-  const { setMenuIsClicked, menuIsClicked, showFilter, setShowFilter } =
-    generalStore();
+  const {
+    setMenuIsClicked,
+    appsMenuIsClicked,
+    setAppsMenuIsClicked,
+    menuIsClicked,
+    showFilter,
+    setShowFilter,
+  } = generalStore();
   return (
     <div
       onClick={() => {
         setMenuIsClicked(false);
         setShowFilter(false);
+        setAppsMenuIsClicked(false);
       }}
       className={`fixed w-full  h-screen bg-transparent ${
-        menuIsClicked || showFilter ? "block" : "hidden"
+        menuIsClicked || showFilter || appsMenuIsClicked ? "block" : "hidden"
       }`}
     ></div>
   );
